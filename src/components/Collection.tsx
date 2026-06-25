@@ -1,48 +1,54 @@
+"use client";
+
 import Image from "next/image";
 import { gallery } from "@/data/gallery";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/navigation";
 
 export default function Collection() {
   return (
-    <section
-      id="collection"
-      className="bg-black text-white py-24 px-6 lg:px-20"
-    >
-      <div className="max-w-7xl mx-auto">
+    <section id="collection" className="bg-black text-white py-32">
+      <div className="text-center mb-16">
+        <p className="uppercase tracking-[0.4em] text-gray-500 mb-4">
+          Collection
+        </p>
 
-        <div className="text-center mb-16">
-          <p className="uppercase tracking-[0.3em] text-gray-400 mb-4">
-            Collection
-          </p>
-
-          <h2 className="text-4xl lg:text-5xl">
-            Featured Designs
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-          {gallery.map((item, index) => (
-            <div
-              key={index}
-              className="group relative overflow-hidden"
-            >
-              <div className="relative h-[450px]">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover transition duration-700 group-hover:scale-105"
-                />
-              </div>
-
-              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-end p-6">
-                <h3 className="text-xl">{item.title}</h3>
-              </div>
-            </div>
-          ))}
-        </div>
-
+        <h2 className="text-4xl lg:text-5xl">
+          Signature Collection
+        </h2>
       </div>
+
+      <Swiper
+        modules={[Navigation]}
+        navigation
+        spaceBetween={30}
+        slidesPerView={1.1}
+        breakpoints={{
+          768: {
+            slidesPerView: 2.2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+        }}
+        className="px-6 lg:px-20"
+      >
+        {gallery.map((image, index) => (
+          <SwiperSlide key={index}>
+            <div className="relative h-[650px] overflow-hidden rounded-lg">
+              <Image
+                src={image}
+                alt={`Atelier ${index + 1}`}
+                fill
+                className="object-cover transition duration-700 hover:scale-105"
+              />
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </section>
   );
 }
