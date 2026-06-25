@@ -21,12 +21,13 @@ export default function Hero() {
         </button>
       </div>
 
-      <div className="relative h-[450px] sm:h-[550px] lg:h-[700px] mt-8 lg:mt-0">
+      <div className="relative w-full aspect-[3/4] lg:h-[700px] mt-8 lg:mt-0">
         <Image
           src="/hero.jpg"
-          alt="Luxury couture dress"
+          alt="Adorned by Thabi Model"
           fill
           priority
+          sizes="(max-width: 1024px) 100vw, 50vw"
           className="object-cover object-top"
         />
       </div>
